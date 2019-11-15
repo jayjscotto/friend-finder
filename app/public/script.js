@@ -23,5 +23,5 @@ $('#submit').click(function (e) {
         "answers": answers
     };
 
-    console.log(newUser);
+    $.post('api/friends', newUser)
 })

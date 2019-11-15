@@ -8,3 +8,5 @@ let friends = [
      'score': [1,2,3,1,2,3,4,2,1,5]
     }
 ]
+
+module.exports = friends;
