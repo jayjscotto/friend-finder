@@ -16,6 +16,7 @@ app.post('/api/friends', function (request, response) {
     friends.push(newUser);
     
     //TODO: add logic to pick friends
+    response.json(friends)
 })
 
 module.exports = app;
