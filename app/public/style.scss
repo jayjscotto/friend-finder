@@ -1,0 +1,185 @@
+$colors: (
+    primary: #39B7A2,
+    accent: #2F3B3B
+);
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+};
+
+$desktop: 768px;
+
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+
+@function colors($color-name) {
+    @return map-get($colors, $color-name)
+}
+
+body {
+    height: 100%;
+}
+
+
+body {
+    height: 100%;
+    
+    #bg {
+        background-color: colors(primary);
+        clip-path: polygon(100% 0%, 100% 60%, 50% 100%, 0 100%, 0 0);
+        width: 100%;
+        height: auto;
+        min-height: 100%;
+        position: absolute;
+        z-index: -1;
+        opacity: .8;
+    }
+
+    #nav {
+        color: colors(accent);
+        display: flex;
+        flex-direction: row;
+
+        h1 {
+            margin: 0.25em 0 2em 1.5em;
+            font-weight: bold;
+        }
+
+        ul {
+            position: absolute;
+            right: 0;
+            margin: 1em 5em 0 0;
+            display: flex;
+            flex-direction: row;
+
+            a {
+                &:hover {
+                    cursor: pointer;
+                    color: colors(accent);
+                }
+            }
+
+            li {
+                color: white;
+                font-size: 1.75em;
+                list-style: none;
+                text-decoration: none;
+                margin-right: 1em;
+
+                &:hover {
+                    cursor: pointer;
+                    color: colors(accent);
+                }
+            }
+        }
+    }
+
+    div.jumbotron  {
+
+        width: 60%;
+        margin: 0 auto;
+        
+        button {
+            color: white;
+            background-color: colors(accent)!important;
+        }
+    }
+
+    div.contain {
+        display: flex;
+        flex-direction: row;
+
+    }
+
+    section#card { 
+        background: #fff;
+        height: fit-content;
+        padding: 20px;
+        margin: 0 auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,.2);
+        width: 30%;
+        grid-area: card;
+        align-self: center;
+        text-align: justify;
+
+        @include desktop {
+            margin: 0 2em;
+            width: 50%;
+        }
+
+       ul {
+            li {
+                font-size: 1.5em;
+                margin: 1em 0;
+                list-style: none;
+
+                @include desktop {
+                    font-size: 1em;
+                }  
+
+                ul#questions {
+
+                    li {
+                        font-size: .75em;
+                        list-style: none;
+                        margin-left: 2em;
+
+                        @include desktop {
+                            font-size: 1em;
+                        }
+                    }
+                }
+            }
+            
+      
+       }
+
+        
+       
+    }
+
+  
+   section#survey {
+        grid-area: survey;
+        height: 80vh;
+        overflow: scroll;
+        margin: 0 5em 0 5em;
+        &::-webkit-scrollbar { width: 0 !important }
+        form {
+            color: white;
+
+            input {
+                width: 40%;
+            }
+        }
+        button {
+            color: white;
+            background-color: colors(accent)!important;
+        }
+   }
+
+   div#footer {
+        margin: 2em 0 0 6em;
+        a {
+            font-size: 1.1em;
+            color: colors(accent);
+            text-decoration: none;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+   }
+
+   div#match-modal {
+       background-color: colors(accent);
+   }
+}
+

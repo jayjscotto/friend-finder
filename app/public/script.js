@@ -1,26 +1,28 @@
 
 $(document).ready(function () {
     const questions = [
-        "Your mind is always active with ideas and plans", 
-        "You rely more on your experience than your imagination", 
-        "You find it easy to stay relaxed and focused", 
-        "You rarely move forward with an idea just because of your curiosity", "Other people don't usually upset you.", 
-        "You think that everyone's views are valid whether they are supported by facts or not",  
+        "Your mind is always active with ideas and plans.", 
+        "You rely more on your experience than your imagination.", 
+        "You find it easy to stay relaxed and focused.", 
+        "You rarely move forward with an idea just because of your curiosity.", 
+        "Other people don't usually upset you.", 
+        "You don't like difficult conversations.",  
         "The truth is more important than someone else's feelings.",
-        "Rush Hour 3 is the best movie ever made",
-        "Disney+ is the new best streaming service",
-        "Tom Brady is the best quarterback of all time."];
+        "Rush Hour 3 is the best movie ever made.",
+        "Disney+ is the new best streaming service.",
+        "Tom Brady is the best quarterback of all time."
+    ];
 
     for (let i = 0; i < questions.length; i++) {
         const div = $("<div>").attr("class", "form-group")
-        const h3 = $("<h3>");
-        h3.text(questions[i]);
+        const h4 = $("<h4>");
+        h4.text(questions[i]);
         const label = $("<label>").attr("for", `question${i}`);
-        label.text("1-5");
+        label.text("Choose 1 (Strongly Disagree) - 5 (Strongly Agree)");
         const select = $("<select>").attr("class", "form-control col-3");
         select.attr("id", `question${i}`);
 
-        $("#survey-form").append(div, h3, label, select);
+        $("#survey-form").append(div, h4, label, select);
 
         for (let j = 1; j < 6; j++) {
             const option = $("<option>").text(j);
@@ -62,7 +64,7 @@ $("#submit").click(function (e) {
         console.log(response)
         $("#modal-content").empty();
         ///then get response and fill modal
-        let matchName = $("<h3>").text(`Your Match: ${response.name}`).attr("class", "text-center mx-auto my-3");
+        let matchName = $("<h4>").text(`Your Match: ${response.name}`).attr("class", "text-center mx-auto my-3");
         let matchPhoto = $("<img>").attr("src", response.photo);
         matchPhoto.attr("class","mx-auto my-3")
         $("#modal-content").append(matchName, matchPhoto);
