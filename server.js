@@ -5,7 +5,7 @@ const express = require(`express`),
     htmlRoutes = require('./app/routing/htmlRoutes'),
     apiRoutes = require('./app/routing/apiRoutes');
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 //middleware
 app.use(express.urlencoded({extended: true}));

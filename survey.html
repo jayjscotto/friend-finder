@@ -20,9 +20,26 @@
         <div class="row mt-2">
             <div class="col">
                 <form id="survey-form">
-
+                        <div class="form-group">
+                                <h2>About You</h2>
+                                <label for="userName">Name (required)</label>
+                                <input type="text" class="form-control" id="userName" placeholder="Keanu Reeves">
+                                <label for="userPhoto">Link to Photo Image (required)</label>
+                                <input type="text" class="form-control" id="userPhoto" placeholder="https://www.picture-of-you.com/image.jpg">
+                            </div>
                 </form>
+                <button class="btn btn-warning" id="submit">Submit!</button>
             </div>
+            <!-- Large modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
+
+<div class="modal fade match-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div id="modal-content" class="modal-content my-4 mx-auto">
+      
+    </div>
+  </div>
+</div>
         </div>
 
         <footer class="mt-5 mb-5">

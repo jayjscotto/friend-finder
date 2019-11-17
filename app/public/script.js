@@ -1,9 +1,15 @@
-//import friends data file
-//ERR: cannot use import outside of a module
-// import { friends } from ("../data/friends");
 
 $(document).ready(function () {
-    const questions = ["hello", "hello world", "question 3"];
+    const questions = [
+        "Your mind is always active with ideas and plans", 
+        "You rely more on your experience than your imagination", 
+        "You find it easy to stay relaxed and focused", 
+        "You rarely move forward with an idea just because of your curiosity", "Other people don't usually upset you.", 
+        "You think that everyone's views are valid whether they are supported by facts or not",  
+        "The truth is more important than someone else's feelings.",
+        "Rush Hour 3 is the best movie ever made",
+        "Disney+ is the new best streaming service",
+        "Tom Brady is the best quarterback of all time."];
 
     for (let i = 0; i < questions.length; i++) {
         const div = $("<div>").attr("class", "form-group")
@@ -11,17 +17,17 @@ $(document).ready(function () {
         h3.text(questions[i]);
         const label = $("<label>").attr("for", `question${i}`);
         label.text("1-5");
-        const select = $("<select>").attr("class", "form-control");
+        const select = $("<select>").attr("class", "form-control col-3");
         select.attr("id", `question${i}`);
 
         $("#survey-form").append(div, h3, label, select);
 
-        for (let j = 0; j < 5; j++) {
+        for (let j = 1; j < 6; j++) {
             const option = $("<option>").text(j);
             select.append(option);
         }
     }
-
+ 
 })
 
 //survey submit
@@ -52,36 +58,15 @@ $("#submit").click(function (e) {
         "answers": answers
     };
 
-    $.post("/api/friends", newUser).then(function(data) {
-        console.log(data)
+    $.post("/api/friends", newUser).then(function(response) {
+        console.log(response)
+        $("#modal-content").empty();
+        ///then get response and fill modal
+        let matchName = $("<h3>").text(`Your Match: ${response.name}`).attr("class", "text-center mx-auto my-3");
+        let matchPhoto = $("<img>").attr("src", response.photo);
+        matchPhoto.attr("class","mx-auto my-3")
+        $("#modal-content").append(matchName, matchPhoto);
+        $(".match-modal").modal("show")   
     })
 
-    return matchUser(newUser, friends);
-
 });
-
-//matching function
-function matchUser(user, array) {
-
-    //current users total survey score
-    let userScore = user.answers;
-
-    //array for friend scores
-    let friendScores = [];
-
-    //iterate over the friends array to get each score
-    for (let i = 0; i < array.length; i++) {
-        //sum each user"s scores and push to the friendScores array
-        let score = array[i].score.reduce((a,b) => a + b);
-        friendScores.push(score);
-    }
-
-    //compute the match by comparing the user"s score to each of the other logged user"s scores 
-    //and returning the closest score
-    let match = friendScores.reduce((previous, current) => Math.abs(current - userScore) < Math.abs(previous - userScore) ? current : previous);
-
-    let userMatch = array[match];
-
-    console.log(userMatch);
-
-}
