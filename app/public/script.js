@@ -64,10 +64,11 @@ $("#submit").click(function (e) {
         console.log(response)
         $("#modal-content").empty();
         ///then get response and fill modal
-        let matchName = $("<h4>").text(`Your Match: ${response.name}`).attr("class", "text-center mx-auto my-3");
+        let modalHeader = $("<h2>").text(`Your Match:`)
+        let matchName = $("<h4>").text(response.name).attr("class", "text-center mx-auto my-3");
         let matchPhoto = $("<img>").attr("src", response.photo);
         matchPhoto.attr("class","mx-auto my-3")
-        $("#modal-content").append(matchName, matchPhoto);
+        $("#modal-content").append(modalHeader, matchName, matchPhoto);
         $(".match-modal").modal("show")   
     })
 
